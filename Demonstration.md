@@ -1,15 +1,34 @@
-# Demonstration
+# Concept Demonstration
 
 ## OOP pillars
 
 ### Abstraction
-All the classes abstract properties 
+All the classes have getter methods to hide implementation details. <br>
+In file Item.js,
+```javascript
+get itemId() {
+    return this._itemId;
+}
+```
 
 ### Encapsulation
-
+All the classes have private attributes and getter methods to prevent direct access. <br>
+In file User.js,
+```javascript
+constructor(id, name, email, type) {
+    // ignore irrelevant code
+    this._id = id;
+    this._name = name;
+    this._email = email;
+    this._type = type;
+}
+get id() {
+    return this._id;
+}
+```
 
 ### Inheritance
-Both class Buyer and class Seller are children of class User.
+Both class Buyer and class Seller are children of class User. <br>
 In file User.js,
 ```javascript
 export default class User {}
@@ -26,19 +45,44 @@ export default class Seller extends User {}
 ```
 
 ### Polymorphism
-
-
+Both Buyer and Seller has makeOffer() method but different results come up when calling it. <br>
+In file Buyer.js,
+```javascript
+makeOffer(negotiation, offerPrice, reason) {
+    if (this.id != negotiation.buyer.id) {
+        throw new Error("FAILED ATTEMPT: unauthorized user tried to make an offer\n");
+    }
+    negotiation.addOffer(this.name, this.type, offerPrice, reason);
+}
+```
+In file Seller.js,
+```javascript
+makeOffer(negotiation, offerPrice, reason) {
+    if (this.id != negotiation.buyer.id) {
+        throw new Error("FAILED ATTEMPT: unauthorized user tried to make an offer\n");
+    }
+    negotiation.addOffer(this.name, this.type, offerPrice, reason);
+}
+```
 
 
 ## SOLID Principles
 
 ### Single Responsibility
-The class User handle only details for User.
+The class User handle only details for User. <br>
+See file User.js for details.
 
 ### Open-closed
+If I need to change how Buyer objects are instantiated, I only modify the factory method, not every place that creates a Buyer.
+In file Buyer.js,
+```javascript
+static createBuyer(userId, userName, email, type) {
+    return new Buyer(userId, userName, email, type);
+}
+```
 
 ### Liskov Substitution
-
+Similar to polymorphism.
 In file main.js,
 ```javascript
 buyer1.viewOffer(negotiation1);
@@ -46,23 +90,36 @@ seller1.viewOffer(negotiation1);
 ```
 In file Buyer.js,
 ```javascript
-
+viewOffer(negotiation) {
+    if (this.id != negotiation.buyer.id) {
+        throw new Error("FAILED ATTEMPT: unauthorized user tried to view an offer\n");
+    }
+    const latestOffer = negotiation.viewOffer();
+    console.log(`The latest offer: ${latestOffer.type} ${latestOffer.name} bargain ${latestOffer.offerPrice}\n`);
+}
 ```
 In file Seller.js,
 ```javascript
-
+viewOffer(negotiation) {
+    if (this.id != negotiation.buyer.id) {
+        throw new Error("FAILED ATTEMPT: unauthorized user tried to view an offer\n");
+    }
+    const latestOffer = negotiation.viewOffer();
+    console.log(`The latest offer: ${latestOffer.type} ${latestOffer.name} bargain ${latestOffer.offerPrice}\n`);
+}
 ```
 
 ### Interface Segregation
-
+Both class Buyer and Seller import that they need from the User. <br>
+See file User.js, Buyer.js, and Seller.js for details.
 
 ### Dependency Inversion
-
+Not explicitly implemented.
 
 
 ## Design Patterns
 
-### Moduel Pattern
+### Module Pattern
 In file main.js,
 ```javascript
 import Buyer from "./code/Buyer.js";
@@ -92,6 +149,81 @@ export default class Buyer extends User {
 }
 ```
 
-### Proxy Pattern
-In file main.js,
+### Repository Pattern
+Seller._myItemList acts as a repository for items, which is a basic implement of this pattern.
+In file Seller.js,
+```javascript
+constructor(userId, userName, email, type) {
+    super(userId, userName, email, type);
+    this._myItemList = [];
+}
+listItem(itemId, itemName, description, initialPrice) {
+    const newItem = new Item(itemId, itemName, description, initialPrice, this);
+    this._myItemList.push(newItem);
+    return newItem;
+}
+```
+
+### Why Good
+Module Pattern keeps logic hidden and restricts direct access, preventing unintended modifications. <br>
+Factory Pattern decouples object creation from implementation to avoid duplications, and it is easier to maintain. <br>
+Repository Pattern simply centralizes data management and increases maintainability.
+
+
+## Counterexample for Used Design Pattern
+
+### Counterexample for Module Pattern
+```javascript
+// Bad module pattern - everything is exposed globally
+const itemModule = {
+    items: [],  // ❌ Directly accessible
+    addItem(item) {
+        this.items.push(item);
+    },
+    getItems() {
+        return this.items;
+    }
+};
+// Global modifications (breaks encapsulation)
+itemModule.items.push({ id: 1, name: "Laptop" });  // ❌ Anyone can modify the array directly!
+console.log(itemModule.getItems());  // [{ id: 1, name: "Laptop" }]
+```
+
+### Counterexample for Factory Pattern
+```javascript
+// Bad Factory - Object creation is repeated everywhere
+class User {
+    constructor(name, type) {
+        this.name = name;
+        this.type = type;
+    }
+}
+// ❌ Instead of using a factory, we instantiate objects manually all over the code
+const buyer = new User("Alice", "buyer");
+const seller = new User("Bob", "seller");
+const anotherBuyer = new User("Charlie", "buyer");
+```
+
+### Counterexample for Repository Pattern
+```javascript
+// Bad Repository Pattern - No data abstraction
+class Order {
+    constructor(orderId, item, buyer) {
+        this.orderId = orderId;
+        this.item = item;
+        this.buyer = buyer;
+    }
+}
+const orders = [];  // ❌ Global data structure exposed
+function placeOrder(order) {
+    orders.push(order);  // ❌ Directly modifying global data
+}
+function getAllOrders() {
+    return orders;  // ❌ Returns direct reference (no encapsulation)
+}
+// Adding orders directly (bad practice)
+placeOrder(new Order(1, "Laptop", "Alice"));
+console.log(getAllOrders());  // ❌ Any code can modify this data
+```
+
 

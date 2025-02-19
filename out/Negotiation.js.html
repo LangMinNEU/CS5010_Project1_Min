@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Negotiation.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Negotiation.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Represent a negotiation.
+ */
+export default class Negotiation {
+
+    /**
+     * Create a new negotiation.
+     * @param {number} negotiationId 
+     * @param {Item} negotiationItem 
+     * @param {Buyer} buyer 
+     */
+    constructor(negotiationId, negotiationItem, buyer) {
+
+        // Check the validation of arguments
+        if (!negotiationId || typeof negotiationId !== "number" || negotiationId &lt;= 0) {
+            throw new Error("INPUT ERROR: invalid negotiation ID\n");
+        }
+        if (!negotiationItem || typeof negotiationItem.itemName !== "string") {
+            throw new Error("INPUT ERROR: invalid item\n");
+        }
+        if (!buyer || typeof buyer.name !== "string") {
+            throw new Error("INPUT ERROR: invalid buyer info\n")
+        }
+
+        this._negotiationId = negotiationId;
+        this._negotiationItem = negotiationItem;
+        this._buyer = buyer;
+
+        this._offerHistory = [];
+
+    }
+
+    /**
+     * @returns {number}
+     */
+    get negotiationId() {
+        return this._negotiationId;
+    }
+
+    /**
+     * @returns {Item}
+     */
+    get negotiationItem() {
+        return this._negotiationItem;
+    }
+
+    /**
+     * @returns {Buyer}
+     */
+    get buyer() {
+        return this._buyer;
+    }
+
+    /**
+     * @returns {Seller}
+     */
+    get seller() {
+        return this._negotiationItem.seller;
+    }
+
+    /**
+     * @returns {Array}
+     */
+    get offerHistory() {
+        return this._offerHistory;
+    }
+
+    /**
+     * Add a new offer to the offer history in the negotiation.
+     * @param {string} name 
+     * @param {string} type 
+     * @param {number} offerPrice 
+     * @param {string} reason 
+     */
+    addOffer(name, type, offerPrice, reason) {
+        const offer = {
+            name: name,
+            type: type,
+            offerPrice: offerPrice,
+            reason: reason
+        }
+        if (this._offerHistory.length === 0) {
+            this._offerHistory.push(offer);
+        } else {
+            if (offer.type === this._offerHistory[this._offerHistory.length-1].type) {
+                throw new Error("ERROR: you may send another offer after the other one replies\n");
+            } else {
+                this._offerHistory.push(offer);
+            }
+        }
+        
+    }
+
+    /**
+     * Return the last offer in the offer history.
+     * @returns {object}
+     */
+    viewOffer() {
+        return this._offerHistory[this._offerHistory.length-1];
+    }
+
+    /**
+     * Print the offer history of this negotiation.
+     * @returns {void}
+     */
+    viewOfferHistory() {
+        console.log(this.offerHistory);
+    }
+
+    /**
+     * Get the price from the last offer in the offer history and call item's function.
+     * @returns {void}
+     */
+    setFinalPrice() {
+        const finalPrice = this._offerHistory[this._offerHistory.length-1].offerPrice;
+        this.negotiationItem.finalizePrice(finalPrice);
+    }
+
+    /**
+     * Call item's function to remove this negotiation.
+     * @returns {void}
+     */
+    terminate() {
+        this._negotiationItem.removeNegotiation(this._buyer);
+    }
+
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module.exports.html">exports</a></li></ul><h3>Global</h3><ul><li><a href="global.html#acceptOffer">acceptOffer</a></li><li><a href="global.html#addNegotiation">addNegotiation</a></li><li><a href="global.html#addOffer">addOffer</a></li><li><a href="global.html#buyer">buyer</a></li><li><a href="global.html#createBuyer">createBuyer</a></li><li><a href="global.html#createSeller">createSeller</a></li><li><a href="global.html#description">description</a></li><li><a href="global.html#email">email</a></li><li><a href="global.html#endNegotiatioin">endNegotiatioin</a></li><li><a href="global.html#endNegotiation">endNegotiation</a></li><li><a href="global.html#finalPrice">finalPrice</a></li><li><a href="global.html#finalizePrice">finalizePrice</a></li><li><a href="global.html#generateInvoice">generateInvoice</a></li><li><a href="global.html#getItemInfo">getItemInfo</a></li><li><a href="global.html#getSellerInfo">getSellerInfo</a></li><li><a href="global.html#getUserInfo">getUserInfo</a></li><li><a href="global.html#id">id</a></li><li><a href="global.html#initialPrice">initialPrice</a></li><li><a href="global.html#itemId">itemId</a></li><li><a href="global.html#itemName">itemName</a></li><li><a href="global.html#listItem">listItem</a></li><li><a href="global.html#makeOffer">makeOffer</a></li><li><a href="global.html#name">name</a></li><li><a href="global.html#negotiationHistory">negotiationHistory</a></li><li><a href="global.html#negotiationId">negotiationId</a></li><li><a href="global.html#negotiationItem">negotiationItem</a></li><li><a href="global.html#offerHistory">offerHistory</a></li><li><a href="global.html#orderId">orderId</a></li><li><a href="global.html#orderItem">orderItem</a></li><li><a href="global.html#placeOrder">placeOrder</a></li><li><a href="global.html#removeItem">removeItem</a></li><li><a href="global.html#removeNegotiation">removeNegotiation</a></li><li><a href="global.html#resetName">resetName</a></li><li><a href="global.html#seller">seller</a></li><li><a href="global.html#setFinalPrice">setFinalPrice</a></li><li><a href="global.html#startNegotiation">startNegotiation</a></li><li><a href="global.html#status">status</a></li><li><a href="global.html#terminate">terminate</a></li><li><a href="global.html#type">type</a></li><li><a href="global.html#updateOrderStatus">updateOrderStatus</a></li><li><a href="global.html#updateStatus">updateStatus</a></li><li><a href="global.html#viewListedItem">viewListedItem</a></li><li><a href="global.html#viewMyItem">viewMyItem</a></li><li><a href="global.html#viewNegotiation">viewNegotiation</a></li><li><a href="global.html#viewOffer">viewOffer</a></li><li><a href="global.html#viewOfferHistory">viewOfferHistory</a></li><li><a href="global.html#viewOrderStatus">viewOrderStatus</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Tue Feb 18 2025 22:58:46 GMT-0800 (Pacific Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
