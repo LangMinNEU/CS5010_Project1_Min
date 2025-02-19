@@ -135,7 +135,7 @@ Attachment: <br>
 All files in folder code <br>
 Prompt: <br>
 Can you check these files and tell me: 1. Which parts match OOP Pillars (abstraction, encapsulation, inheritance, polymorphism)? 2. Which parts match SOLID Principles (single responsibility, open-closed, Liskov substitution, interface segregation, dependency inversion)? 3. Which parts match OOP design patterns (especially module, factory, etc.)? <br>
-Answer:
+Answer: <br>
 ✅ Conclusion: Your Code Fully Matches OOP Pillars! <br>
 Your implementation correctly follows all four pillars. The only room for improvement is: <br>
 - Refactor shared methods into the base class to reduce duplication.
@@ -177,7 +177,7 @@ Answer: <br>
     - Building complex Negotiations with multiple steps
 
 
-I asked ChatGPT 4o to provide counterexamples of my used patterns. I 
+I asked ChatGPT 4o to provide counterexamples of my used patterns. I used the answer it provided. <br>
 Prompt: <br>
 Can you provide a counterexample in JavaScript for each of these three patterns (module, factory, repository)? <br>
 Answer: <br>
