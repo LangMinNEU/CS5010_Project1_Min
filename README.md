@@ -22,6 +22,7 @@ node main.js
 ``` 
 
 ## Gen AI Usage
+### Usage 1
 I asked ChatGPT 4o at early stage about the relationship between class Buyer/Seller and class Negotiation. I studied and modified its provided answer. <br>
 Prompt: <br>
 Suppose Seller strongly owns Item. Buyer can start a negotiation. Seller can reply buyer's bargain. What is the relationship between Buyer (or Seller) and Negotiation? <br>
@@ -130,6 +131,7 @@ buyer.exitNegotiation(negotiation); // ✅ Buyer exits negotiation
 console.log(`Remaining negotiations for ${item.name}:`, item.negotiations.length); // Output: 0
 ```
 
+### Usage 2
 I asked ChatGPT 4o whether my code matches OOP related concepts. I referenced some of its answer. <br>
 Attachment: <br>
 All files in folder code <br>
@@ -142,7 +144,7 @@ Your implementation correctly follows all four pillars. The only room for improv
 - Use better abstraction for error handling instead of throwing raw errors.
 - Introduce a common superclass for Buyer & Seller to simplify role-based access control.
 
-
+### Usage 3
 I asked Claude 3.5 Sonnet whether my code matches any other design patterns. I referenced a part of its answer.
 Attachment: <br>
 All files in folder code <br>
@@ -176,7 +178,7 @@ Answer: <br>
     - Creating Orders with various configurations
     - Building complex Negotiations with multiple steps
 
-
+### Usage 4
 I asked ChatGPT 4o to provide counterexamples of my used patterns. I used the answer it provided. <br>
 Prompt: <br>
 Can you provide a counterexample in JavaScript for each of these three patterns (module, factory, repository)? <br>
