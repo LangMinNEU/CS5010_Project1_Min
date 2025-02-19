@@ -1,5 +1,14 @@
+/**
+ * Represent a negotiation.
+ */
 export default class Negotiation {
 
+    /**
+     * Create a new negotiation.
+     * @param {number} negotiationId 
+     * @param {Item} negotiationItem 
+     * @param {Buyer} buyer 
+     */
     constructor(negotiationId, negotiationItem, buyer) {
 
         // Check the validation of arguments
@@ -21,26 +30,48 @@ export default class Negotiation {
 
     }
 
+    /**
+     * @returns {number}
+     */
     get negotiationId() {
         return this._negotiationId;
     }
 
+    /**
+     * @returns {Item}
+     */
     get negotiationItem() {
         return this._negotiationItem;
     }
 
+    /**
+     * @returns {Buyer}
+     */
     get buyer() {
         return this._buyer;
     }
 
+    /**
+     * @returns {Seller}
+     */
     get seller() {
         return this._negotiationItem.seller;
     }
 
+    /**
+     * @returns {Array}
+     */
     get offerHistory() {
         return this._offerHistory;
     }
 
+    /**
+     * Add a new offer to the offer history in the negotiation.
+     * @param {string} name 
+     * @param {string} type 
+     * @param {number} offerPrice 
+     * @param {string} reason 
+     */
     addOffer(name, type, offerPrice, reason) {
         const offer = {
             name: name,
@@ -60,19 +91,35 @@ export default class Negotiation {
         
     }
 
+    /**
+     * Return the last offer in the offer history.
+     * @returns {object}
+     */
     viewOffer() {
         return this._offerHistory[this._offerHistory.length-1];
     }
 
+    /**
+     * Print the offer history of this negotiation.
+     * @returns {void}
+     */
     viewOfferHistory() {
         console.log(this.offerHistory);
     }
 
+    /**
+     * Get the price from the last offer in the offer history and call item's function.
+     * @returns {void}
+     */
     setFinalPrice() {
         const finalPrice = this._offerHistory[this._offerHistory.length-1].offerPrice;
         this.negotiationItem.finalizePrice(finalPrice);
     }
 
+    /**
+     * Call item's function to remove this negotiation.
+     * @returns {void}
+     */
     terminate() {
         this._negotiationItem.removeNegotiation(this._buyer);
     }

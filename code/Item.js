@@ -1,5 +1,16 @@
+/**
+ * Represent an item.
+ */
 export default class Item {
     
+    /**
+     * Create a new item.
+     * @param {number} itemId 
+     * @param {string} itemName 
+     * @param {string} description 
+     * @param {number} initialPrice 
+     * @param {Seller} seller 
+     */
     constructor(itemId, itemName, description, initialPrice, seller) {
 
         // Check the validation of arguments
@@ -26,50 +37,94 @@ export default class Item {
         this._negotiationHistory = [];
     }
 
+    /**
+     * @returns {number}
+     */
     get itemId() {
         return this._itemId;
     }
 
+    /**
+     * @returns {string}
+     */
     get itemName() {
         return this._itemName;
     }
 
+    /**
+     * @returns {string}
+     */
     get description() {
         return this._description;
     }
 
+    /**
+     * @returns {number}
+     */
     get initialPrice() {
         return this._initialPrice;
     }
 
+    /**
+     * @returns {Seller}
+     */
     get seller() {
         return this._seller;
     }
 
+    /**
+     * @returns {number}
+     */
     get finalPrice() {
         return this._finalPrice;
     }
     
+    /**
+     * @returns {Array}
+     */
     get negotiationHistory() {
         return this._negotiationHistory;
     }
 
+    /**
+     * Print the info of an item.
+     * @returns {void}
+     */
     getItemInfo() {
         console.log(`    Item ID: ${this._itemId}\n    Item Name: ${this._itemName}\n    Description: ${this._description}\n    Initial Price: ${this._initialPrice}\n`)
     }
 
+    /**
+     * Return the seller of this item.
+     * @returns {Seller}
+     */
     getSellerInfo() {
         return this._seller;
     }
 
+    /**
+     * Add a new negotiation to the negotiation history.
+     * @param {Negotiation} newNegotiation 
+     * @returns {void}
+     */
     addNegotiation(newNegotiation) {
         this.negotiationHistory.push(newNegotiation);
     }
 
+    /**
+     * Call negotiation's function to show the offer history.
+     * @param {Negotiation} currentNegotiation 
+     * @returns {void}
+     */
     viewNegotiation(currentNegotiation) {
         currentNegotiation.viewOfferHistory();
     }
 
+    /**
+     * Remove the negotiation that relates to this buyer.
+     * @param {Buyer} buyer 
+     * @returns {void}
+     */
     removeNegotiation(buyer) {
         for (let p = this._negotiationHistory - 1; p >= 0; p--) {
             if (this._negotiationHistory[p].buyer === buyer) {
@@ -79,6 +134,11 @@ export default class Item {
         console.log("A Negotiation ends\n");
     }
 
+    /**
+     * Change the final price of the item to the input price.
+     * @param {number} finalPrice 
+     * @returns {void}
+     */
     finalizePrice(finalPrice) {
         this._finalPrice = finalPrice;
     }

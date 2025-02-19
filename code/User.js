@@ -1,5 +1,15 @@
+/**
+ * Represent a user.
+ */
 export default class User {
 
+    /**
+     * Create a new user.
+     * @param {number} id - as the user's id
+     * @param {string} name - as the user's name
+     * @param {string} email - as the user's email
+     * @param {string} type - either buyer or seller
+     */
     constructor(id, name, email, type) {
 
         // Check the validation of arguments
@@ -22,26 +32,47 @@ export default class User {
         this._type = type;
     }
 
+    /**
+     * @returns {number}
+     */
     get id() {
         return this._id;
     }
 
+    /**
+     * @returns {string}
+     */
     get name() {
         return this._name;
     }
 
+    /**
+     * @returns {string}
+     */
     get email() {
         return this._email;
     }
 
+    /**
+     * @returns {string}
+     */
     get type() {
         return this._type;
     }
 
+    /**
+     * Print all the info of a user.
+     * @returns {void}
+     */
     getUserInfo() {
         console.log(`    User ID: ${this._id}\n    User Name: ${this._name}\n    Email: ${this._email}\n    Type: ${this._type}\n`);
     }
 
+    /**
+     * Reset the name of a user.
+     * @param {string} newName 
+     * @returns {void}
+     */
     resetName(newName) {
         this._name = newName;
     }

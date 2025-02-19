@@ -1,5 +1,14 @@
+/**
+ * Represent an order.
+ */
 export default class Order {
 
+    /**
+     * Create a new order.
+     * @param {number} orderId 
+     * @param {Item} orderItem 
+     * @param {Buyer} buyer 
+     */
     constructor(orderId, orderItem, buyer) {
 
         // Check the validation of arguments
@@ -21,30 +30,53 @@ export default class Order {
         this._status = "incomplete";
     }
 
+    /**
+     * @returns {number}
+     */
     get orderId() {
         return this._orderId;
     }
 
+    /**
+     * @returns {Item}
+     */
     get orderItem() {
         return this._orderItem;
     }
 
+    /**
+     * @returns {Buyer}
+     */
     get buyer() {
         return this._buyer;
     }
 
+    /**
+     * @returns {Seller}
+     */
     get seller() {
         return this._orderItem.seller;
     }
 
+    /**
+     * @returns {string}
+     */
     get status() {
         return this._status;
     }
 
+    /**
+     * Change the status of an order from incomplete to complete.
+     * @returns {void}
+     */
     updateStatus() {
         this._status = "complete";
     }
 
+    /**
+     * Print the invoice an order.
+     * @returns {void}
+     */
     generateInvoice() {
         console.log("Order placed!\n");
         console.log(">>> Invoice\n");

@@ -1,8 +1,5 @@
 import Buyer from "./code/Buyer.js";
 import Seller from "./code/Seller.js";
-// import Item from "./code/Item.js";
-// import Negotiation from "./code/Negotiation.js";
-// import Order from "./code/Order.js";
 
 let userIdCounter = 0;
 let itemIdCounter = 0;
@@ -13,19 +10,23 @@ const allItems = [];
 
 console.log("\n\n-----Part 1--------------------------------------------------\n");
 // Create two new sellers
-const seller1 = new Seller(++userIdCounter, "Tiana", "tiana@example.com", "seller");
+// const seller1 = new Seller(++userIdCounter, "Tiana", "tiana@example.com", "seller");
+const seller1 = Seller.createSeller(++userIdCounter, "Tiana", "tiana@example.com", "seller");
 seller1.getUserInfo();
 
-const seller2 = new Seller(++userIdCounter, "Cindy", "cindy@example.com", "seller");
+// const seller2 = new Seller(++userIdCounter, "Cindy", "cindy@example.com", "seller");
+const seller2 = Seller.createSeller(++userIdCounter, "Cindy", "cindy@example.com", "seller");
 seller2.getUserInfo();
 
-// const seller3 = new Seller(++userIdCounter, "Lance", "lance.com", "seller");     // This line gives constructor error
+// const seller3 = new Seller(++userIdCounter, "Lance", "lance.com", "seller");     // Gives constructor error
 
 // Create two new buyers
-const buyer1 = new Buyer(++userIdCounter, "Kyle", "kyle@example.com", "buyer");
+// const buyer1 = new Buyer(++userIdCounter, "Kyle", "kyle@example.com", "buyer");
+const buyer1 = Buyer.createBuyer(++userIdCounter, "Kyle", "kyle@example.com", "buyer");
 buyer1.getUserInfo();
 
-const buyer2 = new Buyer(++userIdCounter, "Eric", "eric@example.com", "buyer");
+// const buyer2 = new Buyer(++userIdCounter, "Eric", "eric@example.com", "buyer");
+const buyer2 = Buyer.createBuyer(++userIdCounter, "Kyle", "kyle@example.com", "buyer");
 buyer2.getUserInfo();
 
 
@@ -79,6 +80,7 @@ buyer1.makeOffer(negotiation1, 80, "How about this?");
 seller1.makeOffer(negotiation1, 95, "This is my lowest price.");
 
 buyer1.viewOffer(negotiation1);
+seller1.viewOffer(negotiation1);
 
 buyer1.acceptOffer(negotiation1);
 
