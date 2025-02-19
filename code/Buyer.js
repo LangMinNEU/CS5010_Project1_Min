@@ -1,5 +1,4 @@
 import User from "./User.js";
-import Item from "./Item.js";
 import Order from "./Order.js";
 import Negotiation from "./Negotiation.js";
 
@@ -11,7 +10,7 @@ export default class Buyer extends User {
     }
 
     viewListedItem(item) {
-
+        item.getItemInfo();
     }
 
     placeOrder(orderId, orderItem) {
@@ -22,8 +21,12 @@ export default class Buyer extends User {
     }
 
     viewOrderStatus(order) {
-        console.log(order.status);
-        console.log("\n");
+        if (this.id != order.buyer.id) {
+            throw new Error("FAILED ATTEMPT: unauthorized user tried to view an order\n");
+        }
+        console.log(">>> Order\n");
+        console.log(`    Order ID: ${order.orderId}\n    Status: ${order.status}\n`);
+        console.log("<<< Order displayed\n");
     }
 
     startNegotiation(negotiationId, item) {
@@ -33,19 +36,31 @@ export default class Buyer extends User {
     }
 
     endNegotiatioin(negotiation) {
+        if (this.id != negotiation.buyer.id) {
+            throw new Error("FAILED ATTEMPT: unauthorized user tried to end a negotiation\n");
+        }
         negotiation.terminate();
     }
 
     makeOffer(negotiation, offerPrice, reason) {
+        if (this.id != negotiation.buyer.id) {
+            throw new Error("FAILED ATTEMPT: unauthorized user tried to make an offer\n");
+        }
         negotiation.addOffer(this.name, this.type, offerPrice, reason);
     }
 
     viewOffer(negotiation) {
+        if (this.id != negotiation.buyer.id) {
+            throw new Error("FAILED ATTEMPT: unauthorized user tried to view an offer\n");
+        }
         const latestOffer = negotiation.viewOffer();
         console.log(`The latest offer: ${latestOffer.type} ${latestOffer.name} bargain ${latestOffer.offerPrice}\n`);
     }
 
     acceptOffer(negotiation) {
+        if (this.id != negotiation.buyer.id) {
+            throw new Error("FAILED ATTEMPT: unauthorized user tried to accepte an offer\n");
+        }
         negotiation.setFinalPrice();
     }
 

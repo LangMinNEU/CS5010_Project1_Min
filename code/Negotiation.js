@@ -1,22 +1,22 @@
-import Item from "./Item.js"
-
 export default class Negotiation {
 
     constructor(negotiationId, negotiationItem, buyer) {
 
         // Check the validation of arguments
         if (!negotiationId || typeof negotiationId !== "number" || negotiationId <= 0) {
-            throw new Error("ERROR: invalid negotiation ID\n");
+            throw new Error("INPUT ERROR: invalid negotiation ID\n");
         }
-        if (!negotiationItem || !(negotiationItem instanceof Item)) {
-            throw new Error("ERROR: invalid item\n");
+        if (!negotiationItem || typeof negotiationItem.itemName !== "string") {
+            throw new Error("INPUT ERROR: invalid item\n");
+        }
+        if (!buyer || typeof buyer.name !== "string") {
+            throw new Error("INPUT ERROR: invalid buyer info\n")
         }
 
         this._negotiationId = negotiationId;
         this._negotiationItem = negotiationItem;
         this._buyer = buyer;
 
-        // this._currentPrice = null;
         this._offerHistory = [];
 
     }
@@ -48,7 +48,16 @@ export default class Negotiation {
             offerPrice: offerPrice,
             reason: reason
         }
-        this._offerHistory.push(offer);
+        if (this._offerHistory.length === 0) {
+            this._offerHistory.push(offer);
+        } else {
+            if (offer.type === this._offerHistory[this._offerHistory.length-1].type) {
+                throw new Error("ERROR: you may send another offer after the other one replies\n");
+            } else {
+                this._offerHistory.push(offer);
+            }
+        }
+        
     }
 
     viewOffer() {

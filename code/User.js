@@ -4,16 +4,16 @@ export default class User {
 
         // Check the validation of arguments
         if (!id || typeof id !== "number" || id <= 0) {
-            throw new Error("ERROR: invalid user ID\n");
+            throw new Error("INPUT ERROR: invalid user ID\n");
         }
         if (!name || typeof name !== "string") {
-            throw new Error("ERROR: invalid user name\n");
+            throw new Error("INPUT ERROR: invalid user name\n");
         }
-        if (!email || typeof email !== "string") {      // validation check needs improvment
-            throw new Error("ERROR: invalid user email\n");
+        if (!email || typeof email !== "string" || !(email.includes("@"))) {
+            throw new Error("INPUT ERROR: invalid user email\n");
         }
-        if (!type || typeof type !== "string") {
-            throw new Error("ERROR: invalid user type\n");
+        if (!type || typeof type !== "string" || !["buyer", "seller"].includes(type.toLowerCase())) {
+            throw new Error("INPUT ERROR: invalid user type\n");
         }
 
         this._id = id;
@@ -39,7 +39,7 @@ export default class User {
     }
 
     getUserInfo() {
-        console.log(`User ID: ${this._id}\nUser Name: ${this._name}\nEmail: ${this._email}\nType: ${this._type}\n`);
+        console.log(`    User ID: ${this._id}\n    User Name: ${this._name}\n    Email: ${this._email}\n    Type: ${this._type}\n`);
     }
 
     resetName(newName) {

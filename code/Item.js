@@ -4,16 +4,16 @@ export default class Item {
 
         // Check the validation of arguments
         if (!itemId || typeof itemId !== "number" || itemId <= 0) {
-            throw new Error("ERROR: invalid item ID\n");
+            throw new Error("INPUT ERROR: invalid item ID\n");
         }
         if (!itemName || typeof itemName !== "string") {
-            throw new Error("ERROR: invalid item name\n");
+            throw new Error("INPUT ERROR: invalid item name\n");
         }
         if (!description || typeof description !== "string") {      // validation check needs improvment
-            throw new Error("ERROR: invalid item description\n");
+            throw new Error("INPUT ERROR: invalid item description\n");
         }
         if (!initialPrice || typeof initialPrice !== "number" || initialPrice <= 0) {
-            throw new Error("ERROR: invalid item initial price\n");
+            throw new Error("INPUT ERROR: invalid item initial price\n");
         }
 
         this._itemId = itemId;
@@ -62,7 +62,6 @@ export default class Item {
         return this._seller;
     }
 
-    // Add a new negotiation to the history of negotiation (same seller, different buyers)
     addNegotiation(newNegotiation) {
         this.negotiationHistory.push(newNegotiation);
     }
