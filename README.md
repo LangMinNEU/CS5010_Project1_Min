@@ -4,19 +4,20 @@
 This is a OOP project for course CS5010. UniHome is an e-commerce platform designed for people to buy and sell homemade products. 
 
 There are two types of user, which are buyer and seller. <br>
-A buyer can 
-- view listed items
-- place orders
-- check order status
-- start negotiations to bargain with sellers
-  - including make, view, and accept offers
-- end negotiations if needed
-A seller can
-- list, view, and remove items
-- update order status
-- reply buyers that are bargaining
-  - including make, view, and accept offers
-- end negotiations if needed
+- A buyer can 
+  - view listed items
+  - place orders
+  - check order status
+  - start negotiations to bargain with sellers
+    - including make, view, and accept offers
+  - end negotiations if needed
+
+- A seller can
+  - list, view, and remove items
+  - update order status
+  - reply buyers that are bargaining
+    - including make, view, and accept offers
+  - end negotiations if needed
 
 ## Author
 Lang Min
@@ -40,6 +41,7 @@ node main.js
 ``` 
 
 ## Video
+NEU CS5010 Project1 Video <br>
 [Watch on YouTube](https://youtu.be/UlPBGr7M-pY)
 
 ## Gen AI Usage
