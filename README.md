@@ -6,14 +6,17 @@ This is a OOP project for course CS5010. UniHome is an e-commerce platform desig
 ## Author
 Lang Min
 
-## Working File
-./main.js <br>
-./code/Buyer.js <br>
-./code/Item.js <br>
-./code/Negotiation.js <br>
-./code/Order.js <br>
-./code/Seller.js <br>
-./code/User.js
+## Working File/Folder
+- ./main.js
+- ./code/Buyer.js
+- ./code/Item.js
+- ./code/Negotiation.js
+- ./code/Order.js
+- ./code/Seller.js
+- ./code/User.js
+- ./out
+
+Note that out contains JSDoc output
 
 ## How to Run
 To run the code (main.js) in terminal, run
