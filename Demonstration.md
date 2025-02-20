@@ -73,13 +73,8 @@ The class User handle only details for User. <br>
 See file User.js for details.
 
 ### Open-closed
-If I need to change how Buyer objects are instantiated, I only modify the factory method, not every place that creates a Buyer.
-In file Buyer.js,
-```javascript
-static createBuyer(userId, userName, email, type) {
-    return new Buyer(userId, userName, email, type);
-}
-```
+My Factory and Builder Pattern allow more subclasses and methods to be added without modifying existing logic. <br>
+See file UserFactory.js and OrderBuilder.js for details.
 
 ### Liskov Substitution
 Similar to polymorphism.
@@ -135,19 +130,36 @@ export default class Seller extends User {}
 ```
 
 ### Factory Pattern
-In file main.js,
+In file UserFactory.js,
 ```javascript
-import Seller from "./code/Seller.js";
-const seller1 = Seller.createSeller(++userIdCounter, "Tiana", "tiana@example.com", "seller");
-```
-In file Seller.js,
-```javascript
-export default class Buyer extends User {
-    static createBuyer(userId, userName, email, type) {
-        return new Buyer(userId, userName, email, type);
+static createUser(userId, userName, email, type) {
+    switch(type) {
+        case "buyer":
+            return new Buyer(userId, userName, email, type);
+        case "seller":
+            return new Seller(userId, userName, email, type);
+        default:
+            throw new Error("ERROR: invalid type");
     }
 }
 ```
+And more details in UserFactory.js. <br>
+
+### Builder Pattern
+In file Buyer.js,
+```javascript
+placeOrder(orderId, orderItem) {
+    const newOrder = new OrderBuilder()
+        .setId(orderId)
+        .setItem(orderItem)
+        .setBuyer(this)
+        .build();
+    this._myOrderList.push(newOrder);
+    newOrder.generateInvoice();
+    return newOrder;
+}
+```
+And more details in OrderBuilder.js. <br>
 
 ### Repository Pattern
 Seller._myItemList acts as a repository for items, which is a basic implement of this pattern.
@@ -167,6 +179,7 @@ listItem(itemId, itemName, description, initialPrice) {
 ### Why Good
 Module Pattern keeps logic hidden and restricts direct access, preventing unintended modifications. <br>
 Factory Pattern decouples object creation from implementation to avoid duplications, and it is easier to maintain. <br>
+Builder Pattern allows a complex object to be composed with multiple simpler elements, which is more flexible. <br>
 Repository Pattern simply centralizes data management and increases maintainability.
 
 
@@ -202,6 +215,46 @@ class User {
 const buyer = new User("Alice", "buyer");
 const seller = new User("Bob", "seller");
 const anotherBuyer = new User("Charlie", "buyer");
+```
+
+### Counterexample for Builder Pattern
+```javascript
+class CarBuilder {
+    constructor() {
+        this.engine = null;
+        this.color = null;
+        this.wheels = null;
+    }
+    setEngine(engine) {
+        this.engine = engine; // ❌ No method chaining
+    }
+    setColor(color) {
+        this.color = color; // ❌ No method chaining
+    }
+    setWheels(wheels) {
+        this.wheels = wheels; // ❌ No method chaining
+    }
+    build() {
+        return new Car(this.engine, this.color, this.wheels);
+    }
+}
+class Car {
+    constructor(engine, color, wheels) {
+        this.engine = engine;
+        this.color = color;
+        this.wheels = wheels;
+    }
+    getInfo() {
+        return `Car with ${this.engine} engine, ${this.color} color, and ${this.wheels} wheels.`;
+    }
+}
+// ❌ Incorrect usage
+const builder = new CarBuilder();
+builder.setEngine("V8");
+builder.setColor("Red");
+builder.setWheels(4);
+const car = builder.build();
+console.log(car.getInfo()); // Output: "Car with V8 engine, Red color, and 4 wheels."
 ```
 
 ### Counterexample for Repository Pattern

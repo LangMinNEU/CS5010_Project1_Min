@@ -13,7 +13,7 @@
 
 - Extension Deadline: 20 Feb at 4:00 p.m. PST
   - Status: Not resubmitted to Carmen Canvas
-  - Last Commit by Deadline: 
+  - Last Commit by Deadline: Finish updating README and Demonstration markdown file
   - Work: Modify design patterns, Concept Demonstration file, and confusingly finish JSDoc; complete ON TIME
 
 ## Summary
@@ -283,3 +283,49 @@ console.log(getAllOrders());  // ❌ Any code can modify this data
 - 🚨 Breaks Encapsulation → Business logic (placeOrder()) directly modifies global data.
 - 🚨 No Abstraction → Any part of the application can modify orders without restrictions.
 - 🚨 Data Integrity Issues → getAllOrders() returns a direct reference, allowing external code to modify it.
+
+### Usage 5
+I asked ChatGPT 4o to give me counterexample of builder pattern. I took the answer. <br>
+Prompt: <br>
+Please give me a Builder Pattern Example. <br>
+Answer:
+```javascript
+class CarBuilder {
+    constructor() {
+        this.engine = null;
+        this.color = null;
+        this.wheels = null;
+    }
+    setEngine(engine) {
+        this.engine = engine; // ❌ No method chaining
+    }
+    setColor(color) {
+        this.color = color; // ❌ No method chaining
+    }
+    setWheels(wheels) {
+        this.wheels = wheels; // ❌ No method chaining
+    }
+    build() {
+        return new Car(this.engine, this.color, this.wheels);
+    }
+}
+class Car {
+    constructor(engine, color, wheels) {
+        this.engine = engine;
+        this.color = color;
+        this.wheels = wheels;
+    }
+    getInfo() {
+        return `Car with ${this.engine} engine, ${this.color} color, and ${this.wheels} wheels.`;
+    }
+}
+// ❌ Incorrect usage
+const builder = new CarBuilder();
+builder.setEngine("V8");
+builder.setColor("Red");
+builder.setWheels(4);
+const car = builder.build();
+console.log(car.getInfo()); // Output: "Car with V8 engine, Red color, and 4 wheels."
+```
+
+

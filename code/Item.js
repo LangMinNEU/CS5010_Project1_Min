@@ -1,7 +1,6 @@
 /**
  * Represent an item.
  * @class Item
- * @exports default
  */
 export default class Item {
     

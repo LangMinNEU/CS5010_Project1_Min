@@ -4,7 +4,6 @@ import Seller from "./Seller.js";
 /**
  * It helps create new users.
  * @class UserFactory
- * @exports default
  */
 export default class UserFactory {
 

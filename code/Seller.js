@@ -4,7 +4,6 @@ import Item from "./Item.js";
 /**
  * Represent a seller.
  * @class Seller
- * @exports default
  */
 export default class Seller extends User {
 

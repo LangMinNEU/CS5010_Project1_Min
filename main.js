@@ -11,22 +11,18 @@ const allItems = [];
 
 console.log("\n\n-----Part 1--------------------------------------------------\n");
 // Create two new sellers
-// const seller1 = new Seller(++userIdCounter, "Tiana", "tiana@example.com", "seller");
 const seller1 = UserFactory.createUser(++userIdCounter, "Tiana", "tiana@example.com", "seller");
 seller1.getUserInfo();
 
-// const seller2 = new Seller(++userIdCounter, "Cindy", "cindy@example.com", "seller");
 const seller2 = UserFactory.createUser(++userIdCounter, "Cindy", "cindy@example.com", "seller");
 seller2.getUserInfo();
 
 // const seller3 = new Seller(++userIdCounter, "Lance", "lance.com", "seller");     // Gives constructor error
 
 // Create two new buyers
-// const buyer1 = new Buyer(++userIdCounter, "Kyle", "kyle@example.com", "buyer");
 const buyer1 = UserFactory.createUser(++userIdCounter, "Kyle", "kyle@example.com", "buyer");
 buyer1.getUserInfo();
 
-// const buyer2 = new Buyer(++userIdCounter, "Eric", "eric@example.com", "buyer");
 const buyer2 = UserFactory.createUser(++userIdCounter, "Kyle", "kyle@example.com", "buyer");
 buyer2.getUserInfo();
 
@@ -75,14 +71,17 @@ console.log("\n\n-----Part 4--------------------------------------------------\n
 // Have a new negotiation
 const negotiation1 = buyer1.startNegotiation(++negotiationIdCounter, item2);
 
+// Both sides can make offer one by one
 buyer1.makeOffer(negotiation1, 50, "Not even good enough, I think.");
 seller1.makeOffer(negotiation1, 100, "Cool, but I spend many time on it.");
 buyer1.makeOffer(negotiation1, 80, "How about this?");
 seller1.makeOffer(negotiation1, 95, "This is my lowest price.");
 
+// Both sides can view latest offer price
 buyer1.viewOffer(negotiation1);
 seller1.viewOffer(negotiation1);
 
+// Suppose the buyer accept the offer price
 buyer1.acceptOffer(negotiation1);
 
 buyer1.placeOrder(++orderIdCounter, item2);

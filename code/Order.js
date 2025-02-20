@@ -1,7 +1,6 @@
 /**
  * Represent an order.
  * @class Order
- * @exports default
  */
 export default class Order {
 

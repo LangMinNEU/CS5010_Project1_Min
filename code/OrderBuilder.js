@@ -3,7 +3,6 @@ import Order from "./Order.js";
 /**
  * It helps build the orders.
  * @class OrderBuilder
- * @exports default
  */
 export default class OrderBuilder {
 

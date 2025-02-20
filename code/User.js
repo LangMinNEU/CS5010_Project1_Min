@@ -1,7 +1,6 @@
 /**
  * Represent a user.
  * @class User
- * @exports default
  */
 export default class User {
 

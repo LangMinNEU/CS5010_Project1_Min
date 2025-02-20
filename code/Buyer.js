@@ -6,7 +6,6 @@ import OrderBuilder from "./OrderBuilder.js";
 /**
  * Represent a buyer.
  * @class Buyer
- * @exports default
  */
 export default class Buyer extends User {
 

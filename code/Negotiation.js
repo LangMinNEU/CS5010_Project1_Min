@@ -1,7 +1,6 @@
 /**
  * Represent a negotiation.
  * @class Negotiation
- * @exports default
  */
 export default class Negotiation {
 
