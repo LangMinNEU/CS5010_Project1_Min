@@ -3,11 +3,14 @@ import Item from "./Item.js";
 
 /**
  * Represent a seller.
+ * @class Seller
+ * @exports default
  */
 export default class Seller extends User {
 
     /**
      * Create a new seller.
+     * @constructor
      * @param {number} userId 
      * @param {string} userName 
      * @param {string} email 
@@ -18,17 +21,10 @@ export default class Seller extends User {
         this._myItemList = [];
     }
 
-    /**
-     * Factory method to create a new seller.
-     * @param {number} userId 
-     * @param {string} userName 
-     * @param {string} email 
-     * @param {string} type 
-     * @returns {Seller}
-     */
-    static createSeller(userId, userName, email, type) {
-        return new Seller(userId, userName, email, type);
-    }
+    // This static method for seller creation is deprecated and replaced by UserFactory
+    // static createSeller(userId, userName, email, type) {
+    //     return new Seller(userId, userName, email, type);
+    // }
 
     /**
      * Create a new item and add to his own list.

@@ -28,33 +28,41 @@
         <article>
             <pre class="prettyprint source linenums"><code>/**
  * Represent an order.
+ * @class Order
+ * @exports default
  */
 export default class Order {
 
+    // constructor(orderId, orderItem, buyer) {
+
+    //     // Check the validation of arguments
+    //     if (!orderId || typeof orderId !== "number" || orderId &lt;= 0) {
+    //         throw new Error("INPUT ERROR: invalid order ID\n");
+    //     }
+    //     if (!orderItem || typeof orderItem.itemName !== "string") {
+    //         throw new Error("INPUT ERROR: invalid item\n");
+    //     }
+    //     if (!buyer || typeof buyer.name !== "string") {
+    //         throw new Error("INPUT ERROR: invalid buyer info\n")
+    //     }
+
+    //     this._orderId = orderId;
+    //     this._orderItem = orderItem;
+    //     this._buyer = buyer;
+    //     this._price = orderItem.finalPrice;
+
+    //     this._status = "incomplete";
+    // }
+
     /**
      * Create a new order.
-     * @param {number} orderId 
-     * @param {Item} orderItem 
-     * @param {Buyer} buyer 
+     * @constructor
      */
-    constructor(orderId, orderItem, buyer) {
-
-        // Check the validation of arguments
-        if (!orderId || typeof orderId !== "number" || orderId &lt;= 0) {
-            throw new Error("INPUT ERROR: invalid order ID\n");
-        }
-        if (!orderItem || typeof orderItem.itemName !== "string") {
-            throw new Error("INPUT ERROR: invalid item\n");
-        }
-        if (!buyer || typeof buyer.name !== "string") {
-            throw new Error("INPUT ERROR: invalid buyer info\n")
-        }
-
-        this._orderId = orderId;
-        this._orderItem = orderItem;
-        this._buyer = buyer;
-        this._price = orderItem.finalPrice;
-
+    constructor() {
+        this._orderId = null;
+        this._orderItem = "";
+        this._buyer = "";
+        this._price = this._orderItem.finalPrice;
         this._status = "incomplete";
     }
 
@@ -121,13 +129,13 @@ export default class Order {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module.exports.html">exports</a></li></ul><h3>Global</h3><ul><li><a href="global.html#acceptOffer">acceptOffer</a></li><li><a href="global.html#addNegotiation">addNegotiation</a></li><li><a href="global.html#addOffer">addOffer</a></li><li><a href="global.html#buyer">buyer</a></li><li><a href="global.html#createBuyer">createBuyer</a></li><li><a href="global.html#createSeller">createSeller</a></li><li><a href="global.html#description">description</a></li><li><a href="global.html#email">email</a></li><li><a href="global.html#endNegotiatioin">endNegotiatioin</a></li><li><a href="global.html#endNegotiation">endNegotiation</a></li><li><a href="global.html#finalPrice">finalPrice</a></li><li><a href="global.html#finalizePrice">finalizePrice</a></li><li><a href="global.html#generateInvoice">generateInvoice</a></li><li><a href="global.html#getItemInfo">getItemInfo</a></li><li><a href="global.html#getSellerInfo">getSellerInfo</a></li><li><a href="global.html#getUserInfo">getUserInfo</a></li><li><a href="global.html#id">id</a></li><li><a href="global.html#initialPrice">initialPrice</a></li><li><a href="global.html#itemId">itemId</a></li><li><a href="global.html#itemName">itemName</a></li><li><a href="global.html#listItem">listItem</a></li><li><a href="global.html#makeOffer">makeOffer</a></li><li><a href="global.html#name">name</a></li><li><a href="global.html#negotiationHistory">negotiationHistory</a></li><li><a href="global.html#negotiationId">negotiationId</a></li><li><a href="global.html#negotiationItem">negotiationItem</a></li><li><a href="global.html#offerHistory">offerHistory</a></li><li><a href="global.html#orderId">orderId</a></li><li><a href="global.html#orderItem">orderItem</a></li><li><a href="global.html#placeOrder">placeOrder</a></li><li><a href="global.html#removeItem">removeItem</a></li><li><a href="global.html#removeNegotiation">removeNegotiation</a></li><li><a href="global.html#resetName">resetName</a></li><li><a href="global.html#seller">seller</a></li><li><a href="global.html#setFinalPrice">setFinalPrice</a></li><li><a href="global.html#startNegotiation">startNegotiation</a></li><li><a href="global.html#status">status</a></li><li><a href="global.html#terminate">terminate</a></li><li><a href="global.html#type">type</a></li><li><a href="global.html#updateOrderStatus">updateOrderStatus</a></li><li><a href="global.html#updateStatus">updateStatus</a></li><li><a href="global.html#viewListedItem">viewListedItem</a></li><li><a href="global.html#viewMyItem">viewMyItem</a></li><li><a href="global.html#viewNegotiation">viewNegotiation</a></li><li><a href="global.html#viewOffer">viewOffer</a></li><li><a href="global.html#viewOfferHistory">viewOfferHistory</a></li><li><a href="global.html#viewOrderStatus">viewOrderStatus</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Buyer.html">Buyer</a></li><li><a href="module-Item.html">Item</a></li><li><a href="module-Negotiation.html">Negotiation</a></li><li><a href="module-Order.html">Order</a></li><li><a href="module-OrderBuilder.html">OrderBuilder</a></li><li><a href="module-Seller.html">Seller</a></li><li><a href="module-User.html">User</a></li><li><a href="module-UserFactory.html">UserFactory</a></li></ul><h3>Classes</h3><ul><li><a href="module-Buyer.html">Buyer</a></li><li><a href="module-Item.html">Item</a></li><li><a href="module-Negotiation.html">Negotiation</a></li><li><a href="module-Order.html">Order</a></li><li><a href="module-OrderBuilder.html">OrderBuilder</a></li><li><a href="module-Seller.html">Seller</a></li><li><a href="module-User.html">User</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Tue Feb 18 2025 22:58:46 GMT-0800 (Pacific Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Thu Feb 20 2025 13:44:45 GMT-0800 (Pacific Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

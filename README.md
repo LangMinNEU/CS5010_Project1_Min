@@ -1,5 +1,21 @@
 # UniHome
 
+## Important Date
+- Part 1 Deadline: 12 Feb at 4:00 p.m. PST
+  - Status: Submitted to Carmen Canvas ON TIME
+  - Last Commit by Deadline: Add PDF file
+  - Work: Complete Part 1 ON TIME
+
+- Part 2 Deadline: 19 Feb at 4:00 p.m. PST
+  - Status: Not resubmitted to Carmen Canvas (since it is Github link and already in for Part 1)
+  - Last Commit by Deadline: Update README
+  - Work: Complete Part 2 ON TIME
+
+- Extension Deadline: 20 Feb at 4:00 p.m. PST
+  - Status: Not resubmitted to Carmen Canvas
+  - Last Commit by Deadline: 
+  - Work: Modify design patterns, Concept Demonstration file, and confusingly finish JSDoc; complete ON TIME
+
 ## Summary
 This is a OOP project for course CS5010. UniHome is an e-commerce platform designed for people to buy and sell homemade products. 
 

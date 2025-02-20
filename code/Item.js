@@ -1,10 +1,13 @@
 /**
  * Represent an item.
+ * @class Item
+ * @exports default
  */
 export default class Item {
     
     /**
      * Create a new item.
+     * @constructor
      * @param {number} itemId 
      * @param {string} itemName 
      * @param {string} description 

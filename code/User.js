@@ -1,10 +1,13 @@
 /**
  * Represent a user.
+ * @class User
+ * @exports default
  */
 export default class User {
 
     /**
      * Create a new user.
+     * @constructor
      * @param {number} id - as the user's id
      * @param {string} name - as the user's name
      * @param {string} email - as the user's email
@@ -33,28 +36,28 @@ export default class User {
     }
 
     /**
-     * @returns {number}
+     * @returns {number} - user id
      */
     get id() {
         return this._id;
     }
 
     /**
-     * @returns {string}
+     * @returns {string} - user name
      */
     get name() {
         return this._name;
     }
 
     /**
-     * @returns {string}
+     * @returns {string} - user email
      */
     get email() {
         return this._email;
     }
 
     /**
-     * @returns {string}
+     * @returns {string} - user type
      */
     get type() {
         return this._type;

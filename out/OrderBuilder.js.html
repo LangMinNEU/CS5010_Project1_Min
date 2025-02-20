@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: OrderBuilder.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,81 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: OrderBuilder.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import Order from "./Order.js";
 
+/**
+ * It helps build the orders.
+ * @class OrderBuilder
+ * @exports default
+ */
+export default class OrderBuilder {
 
-    <h3> </h3>
+    /**
+     * Create a new builder.
+     * @constructor
+     */
+    constructor() {
+        this.order = new Order();
+    }
 
+    /**
+     * Set order id.
+     * @param {number} orderId 
+     * @returns {OrderBuilder}
+     */
+    setId(orderId) {
+        if (!orderId || typeof orderId !== "number" || orderId &lt;= 0) {
+            throw new Error("INPUT ERROR: invalid order ID\n");
+        }
+        this.order._orderId = orderId;
+        return this;
+    }
 
+    /**
+     * Set order item.
+     * @param {Item} orderItem 
+     * @returns {OrderBuilder}
+     */
+    setItem(orderItem) {
+        if (!orderItem || typeof orderItem.itemName !== "string") {
+            throw new Error("INPUT ERROR: invalid item\n");
+        }
+        this.order._orderItem = orderItem;
+        return this;
+    }
 
+    /**
+     * Set order buyer.
+     * @param {Buyer} buyer 
+     * @returns {OrderBuilder}
+     */
+    setBuyer(buyer) {
+        if (!buyer || typeof buyer.name !== "string") {
+            throw new Error("INPUT ERROR: invalid buyer info\n")
+        }
+        this.order._buyer = buyer;
+        return this;
+    }
 
-
-
-
-
-
-
-    
-
-
-
-
-
+    /**
+     * Return the built order.
+     * @returns {Order}
+     */
+    build() {
+        return this.order;
+    }
+}</code></pre>
+        </article>
+    </section>
 
 
 

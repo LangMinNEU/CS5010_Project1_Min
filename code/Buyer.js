@@ -1,14 +1,18 @@
 import User from "./User.js";
 import Order from "./Order.js";
 import Negotiation from "./Negotiation.js";
+import OrderBuilder from "./OrderBuilder.js";
 
 /**
  * Represent a buyer.
+ * @class Buyer
+ * @exports default
  */
 export default class Buyer extends User {
 
     /**
      * Create a new buyer.
+     * @constructor
      * @param {number} userId 
      * @param {string} userName 
      * @param {string} email 
@@ -19,17 +23,10 @@ export default class Buyer extends User {
         this._myOrderList = [];
     }
 
-    /**
-     * Factory method to create a new buyer.
-     * @param {number} userId 
-     * @param {string} userName 
-     * @param {string} email 
-     * @param {string} type 
-     * @returns {Buyer}
-     */
-    static createBuyer(userId, userName, email, type) {
-        return new Buyer(userId, userName, email, type);
-    }
+    // This static method for buyer creation is deprecated and replaced by UserFactory
+    // static createBuyer(userId, userName, email, type) {
+    //     return new Buyer(userId, userName, email, type);
+    // }
 
     /**
      * Call item's function to display the item's info.
@@ -47,7 +44,16 @@ export default class Buyer extends User {
      * @returns {Order}
      */
     placeOrder(orderId, orderItem) {
-        const newOrder = new Order(orderId, orderItem, this);
+        // This method for order creation is deprecated and replaced by OrderBuilder
+        // const newOrder = new Order(orderId, orderItem, this);
+
+        // This is the new method for order creation
+        const newOrder = new OrderBuilder()
+            .setId(orderId)
+            .setItem(orderItem)
+            .setBuyer(this)
+            .build();
+        
         this._myOrderList.push(newOrder);
         newOrder.generateInvoice();
         return newOrder;

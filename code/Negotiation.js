@@ -1,10 +1,13 @@
 /**
  * Represent a negotiation.
+ * @class Negotiation
+ * @exports default
  */
 export default class Negotiation {
 
     /**
      * Create a new negotiation.
+     * @constructor
      * @param {number} negotiationId 
      * @param {Item} negotiationItem 
      * @param {Buyer} buyer 
